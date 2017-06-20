@@ -1,6 +1,11 @@
-#Done; Users should be able to auction multiple items: One(User) to Many(Items)
+#Users should be able to auction multiple items: One(User) to Many(Items)
 #Users should be able to bid on multiple items: One(User) to Many(Bids)
 #Multiple users should be able to place a bid on an item: Many(User) to One(Item:Bid)
+#session.query(User).all()[0].items[0].name: returns the name of item [0]
+
+#To get highest bid.
+#highest_bid = session.query(Bid).order_by(Bid.price).all().pop()
+#print(highest_bid.user.username, highest_bid.price)
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -14,7 +19,7 @@ Base = declarative_base()
 
 from datetime import datetime
 
-from sqlalchemy import Column, Integer, Float, String, DateTime, ForeignKey
+from sqlalchemy import Table, Column, Integer, Float, String, DateTime, ForeignKey
 
 class Item(Base):
     __tablename__ = "item"
